@@ -58,8 +58,10 @@ namespace dot_net_RPG.Controllers.Services.CharacterService
     public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
     {
       ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+
       List<Character> dbCharacters = await _context.Characters.ToListAsync();
       serviceResponse.Data = (dbCharacters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
+      
       return serviceResponse;
     }
 
